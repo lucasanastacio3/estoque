@@ -108,11 +108,11 @@ export default function Costs() {
             <div className="grid gap-6 mt-8">
               <h2 className="text-2xl font-bold">Salvar custos</h2>
               <div className="rounded-lg border w-full">
-                <TableCosts data={dataCosts} />
+                <TableCosts data={currentPageData} />
               </div>
               <div className="flex justify-center">
                 <ReactPaginate
-                  className="flex justify-around w-1/3 bg-white"
+                  className="flex justify-around w-1/ bg-white"
                   previousLabel={"←"}
                   nextLabel={"→"}
                   pageCount={pageCount}
