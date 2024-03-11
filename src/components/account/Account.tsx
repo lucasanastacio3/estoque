@@ -10,7 +10,7 @@ import Image from "next/image";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SubmitHandler, useForm, useWatch, Control } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 
 interface Props {
@@ -29,19 +29,6 @@ export default function Component() {
   } = useForm<Props>();
 
   const [savedData, setSavedData] = useState<Props[]>([]);
-
-  const isPasswordValid = (value: string) => {
-    return (
-      value.length >= 8 &&
-      /[A-Z]/.test(value) &&
-      /\d/.test(value) &&
-      /[!@#$%^&*]/.test(value)
-    );
-  };
-
-  const isUsernameValid = (value: string) => {
-    return value.length > 0;
-  };
 
   const password = watch("password");
 
