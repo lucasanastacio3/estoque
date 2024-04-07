@@ -15,13 +15,11 @@ datasource db {
 
 model Users {
   id        Int      @id @default(autoincrement())
-  username  String   @unique
+  name      String
   email     String   @unique
   password  String
-  role      String   @default("user")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  deletedAt DateTime
 }
 
 model Products {
@@ -31,7 +29,6 @@ model Products {
   price     Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  deletedAt DateTime
 }
 
 model Suppliers {
@@ -41,7 +38,6 @@ model Suppliers {
   phone     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  deletedAt DateTime
 }
 
 model Reports {
@@ -51,7 +47,6 @@ model Reports {
   amount      Float
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  deletedAt   DateTime
 }
 
 model Backup {
@@ -60,11 +55,21 @@ model Backup {
   status    BackupStatus
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
-  deletedAt DateTime
 }
 
 enum BackupStatus {
   Pending
   Success
   Failed
+}
+
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  action    String
+  tableName String
+  recordId  Int
+  user      String?
+  timestamp DateTime @default(now())
+  oldData   Json?
+  newData   Json?
 }

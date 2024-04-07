@@ -7,12 +7,13 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { DataTable } from "@/helpers/interfaces/dataTableInterface";
+import { DataProduct } from "@/helpers/interfaces/dataTableInterface";
 import { FileEditIcon, TrashIcon } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
+import { deleteProduct } from "@/app/api/route";
 
 type Props = {
-  data: DataTable[];
+  data: DataProduct[];
 };
 export const TableProducts = ({ data }: Props) => {
   return (
@@ -26,7 +27,7 @@ export const TableProducts = ({ data }: Props) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.map((item: DataTable) => (
+        {data.map((item: DataProduct) => (
           <TableRow key={uuidv4()}>
             <TableCell className="font-medium">{item.product}</TableCell>
             <TableCell>{item.quantity}</TableCell>
@@ -37,7 +38,10 @@ export const TableProducts = ({ data }: Props) => {
                 <span className="sr-only">Edit</span>
               </Link>
               <Link href="#">
-                <TrashIcon className="h-4 w-4" />
+                <TrashIcon
+                  onClick={() => deleteProduct(item.id)}
+                  className="h-4 w-4"
+                />
                 <span className="sr-only">Delete</span>
               </Link>
             </TableCell>

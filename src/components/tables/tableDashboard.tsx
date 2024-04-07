@@ -29,7 +29,7 @@ export default function TableDashboard({ data }: Props) {
       <TableBody>
         {data.map((item: DataReport) => (
           <TableRow key={uuidv4()}>
-            <TableCell className="font-medium">{item.date}</TableCell>
+            <TableCell className="font-medium">{item.id}</TableCell>
             <TableCell>{item.product}</TableCell>
             <TableCell>{item.price}</TableCell>
             <TableCell>{item.supplier}</TableCell>
